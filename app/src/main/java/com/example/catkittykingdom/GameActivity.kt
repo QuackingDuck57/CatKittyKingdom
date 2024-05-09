@@ -1,5 +1,9 @@
 package com.example.catkittykingdom
 
-class GameActivity {
+import android.os.Bundle
 
+class GameActivity {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+    }
 }
