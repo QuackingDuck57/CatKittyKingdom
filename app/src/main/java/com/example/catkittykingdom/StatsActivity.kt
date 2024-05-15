@@ -2,15 +2,14 @@ package com.example.catkittykingdom
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.example.catkittykingdom.databinding.ActivityTutorialBinding
+import com.example.catkittykingdom.databinding.ActivityStatsBinding
 
-class TutorialActivity : AppCompatActivity() {
-    private lateinit var binding: ActivityTutorialBinding
+class StatsActivity : AppCompatActivity() {
+
+    private lateinit var binding: ActivityStatsBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityTutorialBinding.inflate(layoutInflater)
+        binding = ActivityStatsBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
     }
-
 }

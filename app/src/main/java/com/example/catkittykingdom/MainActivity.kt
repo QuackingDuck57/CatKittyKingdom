@@ -17,7 +17,12 @@ class MainActivity : AppCompatActivity() {
             startActivity(gameIntent)
         }
         binding.mainHowtoplayButton.setOnClickListener {
-
+            val tutIntent = Intent(this@MainActivity, TutorialActivity::class.java)
+            startActivity(tutIntent)
+        }
+        binding.mainSettingsButton.setOnClickListener {
+            val setIntent = Intent(this@MainActivity, SettingsActivity::class.java)
+            startActivity(setIntent)
         }
     }
 }
