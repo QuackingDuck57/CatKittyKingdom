@@ -49,10 +49,12 @@ class GameActivity : AppCompatActivity() {
             binding.GameTextViewScore.text = "\uD83D\uDC51 Months in power: $months"
 
             // pull random scenario
+            loadQuestions()
 
             //popup window
             val inflater = layoutInflater
             val dialoglayout: View = inflater.inflate(R.layout.item_popup, null)
+            val text = dialoglayout.findViewById<TextView>(R.id.item_textView_popup)
             val button1 = dialoglayout.findViewById<Button>(R.id.item_button_op1)
             val button2 = dialoglayout.findViewById<Button>(R.id.item_button_op2)
             val button3 = dialoglayout.findViewById<Button>(R.id.item_button_op3)
@@ -94,6 +96,29 @@ class GameActivity : AppCompatActivity() {
         }
 
 
+    }
+
+    private fun loadQuestions() {
+        //load questions from JSON
+        val inputStream = resources.openRawResource(R.raw.stuff)
+        val jsonString = inputStream.bufferedReader().use {
+            it.readText()
+        }
+        Log.d(TAG, "onCreate: jsonString $jsonString")
+        //next steps:
+        //make your Question data class
+        //use this tutorial
+        //https://medium.com/@hissain.khan/parsing-with-google-gson-library-in-android-kotlin
+        //scroll down to "parsing between a collection, list, or array"
+        val gson = Gson()
+        val qType = object : TypeToken<List<Question>>() {}.type
+        val questions = gson.fromJson<List<Question>>(jsonString, qType)
+        Log.d(TAG, "loadQuestions: $questions")
+        stuff = Stuff(questions)
+        textMain.text = quiz.cQuestion
+        button1.text = quiz.cChoices.get(quiz.q)
+        button2.text = quiz.cChoices.get(quiz.q)
+        button3.text = quiz.cChoices.get(quiz.q)
     }
 
     fun determineStrike() {
