@@ -9,11 +9,11 @@
         android:id="@+id/activity_game_pass_time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="64dp"
+        android:layout_marginEnd="80dp"
+        android:layout_marginBottom="32dp"
         android:text="+ Month"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <TextView
         android:id="@+id/Game_textView_score"
@@ -27,14 +27,66 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <FrameLayout
-        android:layout_width="409dp"
-        android:layout_height="553dp"
-        android:layout_marginTop="1dp"
-        app:layout_constraintBottom_toTopOf="@+id/activity_game_pass_time"
+        android:id="@+id/game_framelayout"
+        android:layout_width="412dp"
+        android:layout_height="403dp"
+        app:layout_constraintBottom_toTopOf="@+id/Game_textview_progress"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Game_textView_score">
 
+        <ImageView
+            android:id="@+id/game_imageview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:srcCompat="@tools:sample/avatars" />
     </FrameLayout>
+
+    <ProgressBar
+        android:id="@+id/Game_progressbar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="32dp"
+        android:progress="50"
+        app:layout_constraintBottom_toTopOf="@+id/activity_game_pass_time"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/Game_textview_progress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Approval rating:"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/Game_progressbar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/game_textView_strikes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="80dp"
+        android:layout_marginEnd="80dp"
+        android:layout_marginBottom="42dp"
+        android:text="Strikes:"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/activity_game_pass_time"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/game_textView_money"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        android:text="Pawsos:"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/Game_textview_progress"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/game_framelayout" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

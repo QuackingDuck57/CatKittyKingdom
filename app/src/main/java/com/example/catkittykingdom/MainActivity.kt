@@ -1,8 +1,10 @@
 package com.example.catkittykingdom
 
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import com.example.catkittykingdom.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -24,5 +26,14 @@ class MainActivity : AppCompatActivity() {
             val setIntent = Intent(this@MainActivity, SettingsActivity::class.java)
             startActivity(setIntent)
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        val highScorePrefs =  getSharedPreferences(GameActivity.HIGH_SCORE_PREFS, Context.MODE_PRIVATE)  ?: return
+        val highScore = highScorePrefs.getInt(GameActivity.PREFS_MONTHS, 0)
+        Log.d("MainActivity", "determineLose: $highScore")
+
+        binding.mainTextviewScore.text = "Highscore: $highScore"
     }
 }
