@@ -14,6 +14,8 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.example.catkittykingdom.databinding.ActivityGameBinding
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 
 
 class GameActivity : AppCompatActivity() {
@@ -49,7 +51,7 @@ class GameActivity : AppCompatActivity() {
             binding.GameTextViewScore.text = "\uD83D\uDC51 Months in power: $months"
 
             // pull random scenario
-            loadQuestions()
+            //var stuff = loadQuestions()
 
             //popup window
             val inflater = layoutInflater
@@ -60,11 +62,27 @@ class GameActivity : AppCompatActivity() {
             val button3 = dialoglayout.findViewById<Button>(R.id.item_button_op3)
             val builder: AlertDialog.Builder = AlertDialog.Builder(this)
 
+
+//            text.text = stuff.prompt
+//            button1.text = stuff.answer1
+//            button2.text = stuff.answer2
+//            button3.text = stuff.answer3
+//
+//            if (stuff.answer3 == null) {
+//                button3.isEnabled = false
+//                button3.isActivated = false
+//            } else {
+//                button3.isEnabled = true
+//                button3.isActivated = true
+//            }
+
             builder.setView(dialoglayout)
             builder.setCancelable(false)
             var alertDialog = builder.show()
             button1.setOnClickListener {
-                setProgressRating(10)
+                //stuff.ar1?.let { it1 -> setProgressRating(it1) }
+                //stuff.w1?.let { it1 -> setMoneyAmount(it1) }
+                setProgressRating(50)
                 setMoneyAmount(-50)
                 Toast.makeText(this, "AR: $rating% Pawsos: $pawsos", Toast.LENGTH_SHORT).show()
                 binding.activityGamePassTime.isEnabled = true
@@ -74,8 +92,10 @@ class GameActivity : AppCompatActivity() {
                 determineImages()
             }
             button2.setOnClickListener {
-                setProgressRating(-20)
-                setMoneyAmount(-10)
+                //stuff.ar2?.let { it1 -> setProgressRating(it1) }
+                //stuff.w2?.let { it1 -> setMoneyAmount(it1) }
+                setProgressRating(100)
+                setMoneyAmount(-100)
                 Toast.makeText(this, "AR: $rating% Pawsos: $pawsos", Toast.LENGTH_SHORT).show()
                 binding.activityGamePassTime.isEnabled = true
                 binding.activityGamePassTime.isClickable = true
@@ -84,8 +104,10 @@ class GameActivity : AppCompatActivity() {
                 determineImages()
             }
             button3.setOnClickListener {
-                setProgressRating(20)
-                setMoneyAmount(100)
+                //stuff.ar3?.let { it1 -> setProgressRating(it1) }
+                //stuff.w3?.let { it1 -> setMoneyAmount(it1) }
+                setProgressRating(-30)
+                setMoneyAmount(1000)
                 Toast.makeText(this, "AR: $rating% Pawsos: $pawsos", Toast.LENGTH_SHORT).show()
                 binding.activityGamePassTime.isEnabled = true
                 binding.activityGamePassTime.isClickable = true
@@ -98,28 +120,28 @@ class GameActivity : AppCompatActivity() {
 
     }
 
-    private fun loadQuestions() {
-        //load questions from JSON
-        val inputStream = resources.openRawResource(R.raw.stuff)
-        val jsonString = inputStream.bufferedReader().use {
-            it.readText()
-        }
-        Log.d(TAG, "onCreate: jsonString $jsonString")
-        //next steps:
-        //make your Question data class
-        //use this tutorial
-        //https://medium.com/@hissain.khan/parsing-with-google-gson-library-in-android-kotlin
-        //scroll down to "parsing between a collection, list, or array"
-        val gson = Gson()
-        val qType = object : TypeToken<List<Question>>() {}.type
-        val questions = gson.fromJson<List<Question>>(jsonString, qType)
-        Log.d(TAG, "loadQuestions: $questions")
-        stuff = Stuff(questions)
-        textMain.text = quiz.cQuestion
-        button1.text = quiz.cChoices.get(quiz.q)
-        button2.text = quiz.cChoices.get(quiz.q)
-        button3.text = quiz.cChoices.get(quiz.q)
-    }
+//    private fun loadQuestions() : Stuff {
+//        //load questions from JSON
+//        val inputStream = resources.openRawResource(R.raw.stuff)
+//        val jsonString = inputStream.bufferedReader().use {
+//            it.readText()
+//        }
+//        Log.d("GameActivity", "onCreate: jsonString $jsonString")
+//        //next steps:
+//        //make your Question data class
+//        //use this tutorial
+//        //https://medium.com/@hissain.khan/parsing-with-google-gson-library-in-android-kotlin
+//        //scroll down to "parsing between a collection, list, or array"
+//        val gson = Gson()
+//        val qType = object : TypeToken<List<Question>>() {}.type
+//        val questions = gson.fromJson<List<Question>>(jsonString, qType)
+//        Log.d("GameActivity", "loadQuestions: $questions")
+//        //return Stuff(questions)
+////        textMain.text = stuff.questions[0].prompt
+////        button1.text = stuff.cChoices.get(quiz.q)
+////        button2.text = stuff.cChoices.get(quiz.q)
+////        button3.text = stuff.cChoices.get(quiz.q)
+//    }
 
     fun determineStrike() {
         if (rating <= 40 || pawsos < 0) {
